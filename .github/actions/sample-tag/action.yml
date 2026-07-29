@@ -1,0 +1,17 @@
+name: sample-tag
+description: Nested composite for output export test
+outputs:
+  new_tag:
+    description: Generated tag
+    value: ${{ steps.set.outputs.new_tag }}
+  new_version:
+    description: Generated version
+    value: ${{ steps.set.outputs.new_version }}
+runs:
+  using: composite
+  steps:
+    - id: set
+      shell: bash
+      run: |
+        echo "new_tag=v1.2.3" >> "$GITHUB_OUTPUT"
+        echo "new_version=1.2.3" >> "$GITHUB_OUTPUT"
